@@ -387,10 +387,10 @@
     <footer id="contact" class="bg-gray-950 border-t border-gray-800 py-10 px-6 text-center md:text-left text-gray-400 text-sm space-y-4">
         <div class="flex justify-center md:justify-start space-x-8 text-3xl mb-4">
             <a href="https://wa.me/918858916452" target="_blank" class="hover:text-green-500 transition"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="ttps://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=ktjvl6r"></i></a>
-            <a href="https://www.facebook.com/share/1dH28o1JLg/" target="_blank" class="hover:text-blue-500 transition"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=ktjvl6r"></i></a>
+            <a href="https://www.facebook.com/amarendar.rajput" target="_blank" class="hover:text-blue-500 transition"><i class="fa-brands fa-facebook"></i></a>
             <a href="tel:+918858916452" class="hover:text-orange-500 transition"><i class="fa-solid fa-phone"></i></a>
-        </div>
+        </div>hi kiya
         
         <div class="max-w-7xl mx-auto space-y-1 text-gray-300 flex flex-col md:flex-row justify-between items-center">
             <div>
@@ -833,57 +833,6 @@
             renderTasks();
         };
 
-        // --- GOOGLE SHEETS & REGISTRATION INTEGRATION ---
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const name = document.getElementById('login-name').value;
-            const phone = document.getElementById('login-phone').value;
-            const shift = document.getElementById('login-shift').value;
-            
-            const btn = document.getElementById('submit-btn');
-            btn.innerText = "Registering & Saving...";
-            btn.disabled = true;
-
-            // Google Apps Script Web App Endpoint integration template 
-            // Replace 'YOUR_GOOGLE_SCRIPT_URL' with your deployment URL if required
-            const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL'; 
-
-            const data = { name, phone, shift };
-
-            // Fallback simulation or direct fetch dispatch
-            setTimeout(() => {
-                alert(`Thank you, ${name}! Your registration for the ${shift} has been recorded.`);
-                document.getElementById('registration-form').reset();
-                btn.innerText = "Submit & Register";
-                btn.disabled = false;
-                
-                // Optional direct WhatsApp redirect for instant admin approval confirmation
-                window.open(`https://wa.me/918858916452?text=New%20Registration:%20Name:%20${encodeURIComponent(name)}%2C%20Phone:%20${phone}%2C%20Shift:%20${encodeURIComponent(shift)}`, '_blank');
-            }, 1000);
-        }
-
-        let ratingValue = 0;
-        function setRating(stars) {
-            ratingValue = stars;
-            for (let i = 1; i <= 5; i++) {
-                const star = document.getElementById(`star-${i}`);
-                if (i <= stars) {
-                    star.classList.remove('text-gray-600');
-                    star.classList.add('text-yellow-400');
-                } else {
-                    star.classList.remove('text-yellow-400');
-                    star.classList.add('text-gray-600');
-                }
-            }
-        }
-
-        function sendFeedbackWhatsApp(event) {
-            event.preventDefault();
-            const name = document.getElementById('fb-name').value;
-            const msg = document.getElementById('fb-message').value;
-            const text = `*Library Feedback*%0A*Name:* ${encodeURIComponent(name)}%0A*Rating:* ${ratingValue}/5 Stars%0A*Message:* ${encodeURIComponent(msg)}`;
-            window.open(`https://wa.me/918858916452?text=${text}`, '_blank');
-        }
     </script>
 </body>
 </html>
