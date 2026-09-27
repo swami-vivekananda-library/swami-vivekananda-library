@@ -163,38 +163,231 @@
     </section>
 
     <!-- MEMBERSHIP PLANS -->
+    <!-- MEMBERSHIP PLANS & SEAT BOOKING MODAL/SECTION -->
     <section id="membership" class="py-12 px-6 max-w-7xl mx-auto">
-        <h2 class="text-3xl font-bold text-center text-orange-500 mb-2">Flexible Membership Plans</h2>
-        <p class="text-center text-gray-400 mb-8">Choose a shift that fits your study routine best.</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <h2 class="text-3xl font-bold text-center text-orange-500 mb-2">Flexible Membership Plans & Seat Booking</h2>
+        <p class="text-center text-gray-400 mb-8">Choose your shift, pay online/cash, upload the payment receipt, and reserve your space.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div class="bg-gray-900 border border-gray-800 p-8 rounded-2xl shadow-xl text-center flex flex-col justify-between">
                 <div>
-                    <h3 class="text-2xl font-bold text-orange-400 mb-2">6 Hours</h3>
+                    <h3 class="text-2xl font-bold text-orange-400 mb-2">6 Hours Shift</h3>
                     <p class="text-gray-400 text-sm mb-4">06:00 AM – 12:00 PM</p>
                     <div class="text-3xl font-extrabold text-white mb-6">₹500 <span class="text-sm font-normal text-gray-400">/month</span></div>
                 </div>
-                <a href="https://wa.me/918858916452?text=Hello,%20I%20want%20to%20book%20the%20Morning%20Shift%20(₹500/month)." target="_blank" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2.5 rounded-lg transition block">Book Shift</a>
             </div>
             <div class="bg-gray-900 border-2 border-orange-500 p-8 rounded-2xl shadow-xl text-center flex flex-col justify-between relative">
                 <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange-500 text-xs px-3 py-1 rounded-full font-bold uppercase text-white">Most Popular</span>
                 <div>
-                    <h3 class="text-2xl font-bold text-orange-400 mb-2">Half Day Shift</h3>
-                    <p class="text-gray-400 text-sm mb-4">06:00 AM – 6:00 PM</p>
+                    <h3 class="text-2xl font-bold text-orange-400 mb-2">Full Day Shift</h3>
+                    <p class="text-gray-400 text-sm mb-4">06:00 AM – 06:00 PM</p>
                     <div class="text-3xl font-extrabold text-white mb-6">₹800 <span class="text-sm font-normal text-gray-400">/month</span></div>
                 </div>
-                <a href="https://wa.me/918858916452?text=Hello,%20I%20want%20to%20book%20the%20Full%20Day%20Shift%20(₹900/month)." target="_blank" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2.5 rounded-lg transition block">Book Full Day</a>
             </div>
             <div class="bg-gray-900 border border-gray-800 p-8 rounded-2xl shadow-xl text-center flex flex-col justify-between">
                 <div>
-                    <h3 class="text-2xl font-bold text-orange-400 mb-2">Evening Shift(</h3>
-                    <p class="text-gray-400 text-sm mb-4">6:00 PM – 11:00 PM</p>
+                    <h3 class="text-2xl font-bold text-orange-400 mb-2">Evening Shift</h3>
+                    <p class="text-gray-400 text-sm mb-4">06:00 PM – 11:00 PM</p>
                     <div class="text-3xl font-extrabold text-white mb-6">₹500 <span class="text-sm font-normal text-gray-400">/month</span></div>
                 </div>
-                <a href="https://wa.me/918858916452?text=Hello,%20I%20want%20to%20book%20the%20Evening%20Shift%20(₹600/month)." target="_blank" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2.5 rounded-lg transition block">Book Shift</a>
             </div>
         </div>
-    </section>
 
+        <!-- SEAT BOOKING & PAYMENT SUBMISSION FORM BOX -->
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            background: #fff;
+            color: #333;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            margin: auto;
+        }
+        h2 { text-align: center; color: #444; font-size: 20px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .btn-submit {
+            position: relative;
+            z-index: 99;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .btn-submit:hover { background-color: #45a049; }
+        #payment-details {
+            background: #f9f9f9;
+            padding: 10px;
+            border: 1px dashed #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        #qr-img { width: 150px; height: 150px; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+<div class="container" style="max-width: 500px; background: #fff; color: #333; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); margin: auto; font-family: Arial, sans-serif;">
+    <h2 style="text-align: center; color: #444; font-size: 20px; margin-bottom: 20px;">Swami Vivekananda Library - Seat Booking</h2>
+    
+    <form id="libraryBookingForm">
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Full Name:</label>
+            <input type="text" name="Name" id="fullName" placeholder="Enter your full name" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">WhatsApp Number (10 digits):</label>
+            <input type="tel" name="WhatsApp" id="whatsappNo" pattern="[0-9]{10}" placeholder="Enter 10-digit number" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Select Shift & Plan:</label>
+            <select name="Shift_Plan" id="selectedShift" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
+                <option value="">-- Choose Your Shift --</option>
+                <option value="6 Hours Shift - ₹500">6 Hours Shift (06:00 AM – 12:00 PM) - ₹500/month</option>
+                <option value="Full Day Shift - ₹800">Full Day Shift (06:00 AM – 06:00 PM) - ₹800/month</option>
+                <option value="Evening Shift - ₹500">Evening Shift (06:00 PM – 11:00 PM) - ₹500/month</option>
+            </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Select Fee Month:</label>
+            <select name="Fee_Month" id="feeMonth" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
+                <option value="">-- Choose Month --</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+            </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Payment Method:</label>
+            <select name="Payment_Method" id="paymentMethod" onchange="handlePaymentMethod()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
+                <option value="">-- Select Payment Method --</option>
+                <option value="Cash">Cash (Pay at Library)</option>
+                <option value="UPI">UPI ID</option>
+                <option value="QR Code">QR Code</option>
+            </select>
+        </div>
+
+        <div id="dynamic-payment-section"></div>
+
+        <button type="submit" id="submitBtn" style="background-color: #4CAF50; color: white; padding: 12px; border: none; width: 100%; border-radius: 5px; font-size: 16px; cursor: pointer; font-weight: bold;">Submit Booking & Open WhatsApp</button>
+    </form>
+</div>
+
+<script>
+    function handlePaymentMethod() {
+        const method = document.getElementById('paymentMethod').value;
+        const section = document.getElementById('dynamic-payment-section');
+        section.innerHTML = '';
+
+        if (method === 'UPI' || method === 'QR Code') {
+            let html = `
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Payment Note / Transaction ID:</label>
+                    <input type="text" name="Receipt" id="receiptText" placeholder="Enter UPI Transaction ID" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
+                </div>
+            `;
+            if (method === 'UPI') {
+                html += `<div style="background: #f9f9f9; padding: 10px; border: 1px dashed #ccc; border-radius: 5px; margin-top: 10px; text-align: center; color: #333;"><strong>Owner UPI ID:</strong> 9336327644@okbizaxis</div>`;
+            } else if (method === 'QR Code') {
+                html += `<div style="background: #f9f9f9; padding: 10px; border: 1px dashed #ccc; border-radius: 5px; margin-top: 10px; text-align: center; color: #333;"><strong>Scan QR Code to Pay:</strong><br><p style="font-size:12px; color:#666;">(Aapka QR code yahan dikhega)</p></div>`;
+            }
+            section.innerHTML = html;
+        }
+    }
+
+    document.getElementById('libraryBookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = "Saving data to Google Sheet...";
+        btn.disabled = true;
+
+        const name = document.getElementById('fullName').value;
+        const whatsapp = document.getElementById('whatsappNo').value;
+        const shift = document.getElementById('selectedShift').value;
+        const month = document.getElementById('feeMonth').value;
+        const method = document.getElementById('paymentMethod').value;
+        
+        let receiptVal = "Cash Payment";
+        const receiptInput = document.getElementById('receiptText');
+        if (receiptInput) {
+            receiptVal = receiptInput.value;
+        }
+
+        // 🟢 YAHAN APNA GOOGLE APPS SCRIPT KA WEB APP URL PASTE KAREIN 🟢
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzokIzmjGKRP33CXqwPoTxD4psHtjxX4HS4Bbg3A8W25635mjCJZotRBXtPKBZ5BuJ4/exec";
+
+        const formData = new FormData(this);
+
+        // Google Sheet me data bhejna
+        fetch(scriptURL, { method: 'POST', body: formData })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                openWhatsApp(name, whatsapp, shift, month, method, receiptVal);
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                // Agar network error bhi ho toh bhi WhatsApp khul jaye taaki user ka kaam na ruke
+                openWhatsApp(name, whatsapp, shift, month, method, receiptVal);
+            });
+    });
+
+    function openWhatsApp(name, whatsapp, shift, month, method, receiptVal) {
+        const ownerWhatsApp = "918858916452"; // Aapka WhatsApp number
+        const whatsappMessage = `*New Library Booking!*\n\n` +
+            `👤 *Name:* ${name}\n` +
+            `📱 *WhatsApp:* ${whatsapp}\n` +
+            `⏰ *Shift:* ${shift}\n` +
+            `📅 *Month:* ${month}\n` +
+            `💳 *Payment:* ${method}\n` +
+            `📝 *Txn/Note:* ${receiptVal}\n\n` +
+            `"-----PLEASE SEND THE PAYMENT RECIEPT ALONG WITH IT-----".`;
+
+        const whatsappUrl = `https://wa.me/${ownerWhatsApp}?text=` + encodeURIComponent(whatsappMessage);
+        
+        alert("Booking successfully! Now opening WhatsApp...");
+        window.open(whatsappUrl, '_blank');
+        
+        // Form reset
+        document.getElementById('libraryBookingForm').reset();
+        document.getElementById('dynamic-payment-section').innerHTML = '';
+        document.getElementById('submitBtn').innerText = "Submit Booking & Open WhatsApp";
+        document.getElementById('submitBtn').disabled = false;
+    }
     <!-- STUDY TOOLS & ADVANCED PRODUCTIVITY -->
     <section id="study-tools" class="py-12 px-6 max-w-7xl mx-auto space-y-12">
         <div class="text-center">
@@ -664,7 +857,7 @@
             window.open(whatsappUrl, '_blank');
         }
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbziLZPt-suQJsvzLX_ZPMZnyMEw1iD74qQePlyViHZ1cwfIRoGopNSVhhUjXzbL_Lj8Zw/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyu7tMowAL2tfE6RHVVRGxtSVGGDdQZV2LqPV5saXg5VvsBMzkDHfdSJFLjxdSXA-DK/exec';
 
         function handleFormSubmit(e) {
             e.preventDefault();
