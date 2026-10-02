@@ -193,204 +193,293 @@
             </div>
         </div>
 
-        <!-- SEAT BOOKING & PAYMENT SUBMISSION FORM BOX -->
-        <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1a1a1a;
-            color: #fff;
-            padding: 20px;
-        }
-        .container {
-            max-width: 500px;
-            background: #fff;
-            color: #333;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            margin: auto;
-        }
-        h2 { text-align: center; color: #444; font-size: 20px; margin-bottom: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-        .btn-submit {
-            position: relative;
-            z-index: 99;
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px;
-            border: none;
-            width: 100%;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .btn-submit:hover { background-color: #45a049; }
-        #payment-details {
-            background: #f9f9f9;
-            padding: 10px;
-            border: 1px dashed #ccc;
-            border-radius: 5px;
-            margin-top: 10px;
-            text-align: center;
-        }
-        #qr-img { width: 150px; height: 150px; margin-top: 10px; display: none; }
-    </style>
+       <style>
+:root{--bg:#0b1220;--panel:#121a2b;--line:#26324a;--tx:#e8edf7;--mute:#8b98b3;--or:#f97316;--ok:#22c55e;--bad:#ef4444;--wait:#eab308}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:560px;margin:0 auto;padding:16px 14px 48px}
+h1{color:var(--or);font-size:1.5rem;margin:8px 0 2px}
+.sub{color:var(--mute);margin:0 0 14px}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs button{flex:1;padding:10px;border:1px solid var(--line);background:var(--panel);color:var(--mute);border-radius:8px;font-weight:600}
+.tabs button.on{color:#fff;background:var(--or);border-color:var(--or)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+label{display:block;font-weight:600;margin:12px 0 4px;font-size:.92rem}
+input,select{width:100%;padding:11px;border-radius:8px;border:1px solid var(--line);background:#0e1626;color:var(--tx);font:inherit}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--or);outline-offset:1px}
+.btn{width:100%;margin-top:16px;padding:13px;border:0;border-radius:8px;background:var(--ok);color:#04130a;font-weight:700;font-size:1rem}
+.btn:disabled{opacity:.5}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:6px}
+.seat{padding:12px 0;border-radius:8px;border:2px solid var(--ok);background:#10301d;color:var(--tx);font-weight:700}
+.seat.t{border-color:var(--bad);background:#3a1414;color:#a77;cursor:not-allowed}
+.seat.p{border-color:var(--wait);background:#3a3010}
+.seat.sel{background:var(--or);border-color:var(--or);color:#fff}
+.legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--mute);font-size:.82rem;margin:8px 0 0}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.msg{margin-top:12px;padding:10px;border-radius:8px;font-size:.92rem}
+.msg.e{background:#3a1414;color:#fca5a5}.msg.s{background:#10301d;color:#86efac}
+.pbox{text-align:center;margin-top:10px;padding:12px;border:1px dashed var(--line);border-radius:10px}
+.pbox img{max-width:210px;width:100%;border-radius:8px;background:#fff;padding:6px}
+.upi{font-size:1.15rem;font-weight:700;color:var(--or);margin:4px 0;word-break:break-all}
+.cpb{padding:8px 14px;border-radius:8px;border:1px solid var(--or);background:transparent;color:var(--or);font-weight:600}
+.hide{display:none}
+h3{margin:18px 0 6px;font-size:1.05rem}
+.bdg{background:var(--bad);color:#fff;border-radius:99px;padding:1px 9px;font-size:.8rem;vertical-align:1px}
+.note{border:1px solid var(--wait);background:#1a1a14;border-radius:10px;padding:11px;margin-bottom:8px}
+.note small{color:var(--mute)}.note a{color:var(--or)}
+.ab{display:flex;gap:8px;margin-top:8px}
+.ab button{flex:1;padding:10px;border:0;border-radius:8px;font-weight:700;color:#fff}
+.ab .g{background:#16a34a}.ab .x{background:#b91c1c}
+.o .seat{cursor:pointer}
+.months{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.mo{border:1px solid var(--line);border-radius:8px;padding:5px 2px;text-align:center;font-size:.78rem;color:var(--mute)}
+.mo b{display:block;color:var(--tx)}
+.mo.Paid{background:#10301d;border-color:var(--ok)}.mo.Pending{background:#3a3010;border-color:var(--wait)}
+.mo.Baki{background:#3a1414;border-color:var(--bad)}.mo.Chhoda{opacity:.55}
+           /* ===== Mobile friendly ===== */
+html,body{overflow-x:hidden}
+img{max-width:100%}
+@media (max-width:600px){
+  body{font-size:16px}
+  header{padding:8px 10px;gap:8px;flex-wrap:wrap}
+  header img{height:42px;width:42px}
+  header h1{flex:1 1 140px;font-size:18px;letter-spacing:0;min-width:0}
+  header small{display:none}
+  #lang{padding:6px;font-size:14px}
+  #loginBtn{padding:8px 14px;font-size:14px;margin-left:0}
+  .carousel{padding:10px 0}
+  .track{padding:0 10px;gap:10px}
+  .track img{flex:0 0 80vw;height:300px}
+  .arrow{width:34px;height:70px;font-size:18px}
+  section.page{margin:14px 10px;padding:16px 14px}
+  section.page h2{font-size:21px}
+  .frames{grid-template-columns:repeat(2,1fr);gap:8px}
+  .frames img:last-child:nth-child(odd){grid-column:1/-1}
+  footer{padding:24px 12px 100px}
+  .social a{width:48px;height:48px;font-size:22px}
+  .float{right:10px;bottom:12px;gap:10px}
+  .float a{width:50px;height:50px;font-size:24px}
+  .box{padding:16px;max-height:92vh}
+  .box h2{font-size:20px}
+}
+</style>
 </head>
 <body>
-<div class="container" style="max-width: 500px; background: #fff; color: #333; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); margin: auto; font-family: Arial, sans-serif;">
-    <h2 style="text-align: center; color: #444; font-size: 20px; margin-bottom: 20px;">Swami Vivekananda Library - Seat Booking</h2>
-    
-    <form id="libraryBookingForm">
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Full Name:</label>
-            <input type="text" name="Name" id="fullName" placeholder="Enter your full name" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
-        </div>
-
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">WhatsApp Number (10 digits):</label>
-            <input type="tel" name="WhatsApp" id="whatsappNo" pattern="[0-9]{10}" placeholder="Enter 10-digit number" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
-        </div>
-
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Select Shift & Plan:</label>
-            <select name="Shift_Plan" id="selectedShift" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
-                <option value="">-- Choose Your Shift --</option>
-                <option value="6 Hours Shift - ₹500">6 Hours Shift (06:00 AM – 12:00 PM) - ₹500/month</option>
-                <option value="Full Day Shift - ₹800">Full Day Shift (06:00 AM – 06:00 PM) - ₹800/month</option>
-                <option value="Evening Shift - ₹500">Evening Shift (06:00 PM – 11:00 PM) - ₹500/month</option>
-            </select>
-        </div>
-
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Select Fee Month:</label>
-            <select name="Fee_Month" id="feeMonth" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
-                <option value="">-- Choose Month --</option>
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-            </select>
-        </div>
-
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Payment Method:</label>
-            <select name="Payment_Method" id="paymentMethod" onchange="handlePaymentMethod()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
-                <option value="">-- Select Payment Method --</option>
-                <option value="Cash">Cash (Pay at Library)</option>
-                <option value="UPI">UPI ID</option>
-                <option value="QR Code">QR Code</option>
-                
-            </select>
-        </div>
-
-        <div id="dynamic-payment-section"></div>
-
-        <button type="submit" id="submitBtn" style="background-color: #4CAF50; color: white; padding: 12px; border: none; width: 100%; border-radius: 5px; font-size: 16px; cursor: pointer; font-weight: bold;">Submit Booking & Open WhatsApp</button>
-    </form>
+<main>
+<h1 id="libname"></h1>
+<p class="sub">Choose a shift , select an empty sea, then submit the booking</p>
+<div class="tabs">
+  <button id="tb1" class="on">Book a seat</button>
+  <button id="tb2">Owner</button>
 </div>
 
+<!-- STUDENT -->
+ <section id="seatbooking" class="px-6 py-8 max-w-7xl mx-auto"></section>
+<section id="stu" class="card">
+  <label for="name">Full Name</label>
+  <input id="name" placeholder="Enter your full name" autocomplete="name">
+  <label for="phone">WhatsApp Number (10 digits)</label>
+  <input id="phone" inputmode="numeric" maxlength="10" placeholder="Enter 10-digit number" autocomplete="tel">
+  <label for="shift">Shift &amp; Plan</label>
+  <select id="shift"></select>
+  <label for="month">Fee Month</label>
+  <select id="month"></select>
+  <label>Seat <span id="seatTxt" style="color:var(--or)"></span></label>
+  <div id="grid" class="grid"></div>
+  <div class="legend"><span><i style="background:var(--ok)"></i>Empty</span><span><i style="background:var(--bad)"></i>Booked</span><span><i style="background:var(--or)"></i>Your seat</span></div>
+  <label for="pay">Payment Method</label>
+  <select id="pay"><option>QR Code</option><option>UPI</option><option>Cash</option></select>
+  <div id="pQR" class="pbox"><img src="qr.jpg" alt="Payment QR code"><div class="sub">Scan the QR and pay the fees, then send the screenshot on Whatsapp.</div></div>
+  <div id="pUPI" class="pbox hide"><div class="sub" style="margin:0">UPI ID</div><div class="upi" id="upiId"></div>
+    <button type="button" id="cp" class="cpb">Copy UPI ID</button>
+    <div class="sub" style="margin-top:8px">Pay and send the payment reciept on Whatsapp</div></div>
+  <div id="pCash" class="pbox hide"><b>Cash payment</b><div class="sub" style="margin-top:4px">Give the cash to the library owner at the library counter, the owner will confirm the seat.</div></div>
+  <button id="go" class="btn">Submit Booking &amp; Open WhatsApp</button>
+  <div id="sMsg"></div>
+</section>
+
+<!-- OWNER -->
+<section id="own" class="card hide">
+  <div id="lg">
+    <label for="pw">Owner password</label>
+    <input id="pw" type="password" autocomplete="current-password">
+    <button id="login" class="btn" style="background:var(--or);color:#fff">Login</button>
+    <div id="oMsg"></div>
+  </div>
+  <div id="oBody" class="hide">
+    <h3 style="margin-top:0">New requests <span id="pc" class="bdg">0</span></h3>
+    <div id="pend"></div>
+    <h3>Seat map</h3>
+    <div style="display:flex;gap:8px"><select id="fm"></select><select id="fs"></select></div>
+    <div id="ogrid" class="grid o" style="margin-top:10px"></div>
+    <div class="legend"><span><i style="background:var(--ok)"></i>Empty</span><span><i style="background:var(--wait)"></i>Pending</span><span><i style="background:var(--bad)"></i>Confirmed</span></div>
+    <div id="det" style="margin-top:12px"></div>
+    <button id="logout" class="btn" style="background:#26324a;color:var(--tx)">Logout</button>
+  </div>
+</section>
+</main>
+
 <script>
-    function handlePaymentMethod() {
-        const method = document.getElementById('paymentMethod').value;
-        const section = document.getElementById('dynamic-payment-section');
-        section.innerHTML = '';
+/* ====== SETTINGS: sirf yahan badlo ====== */
+const CFG = {
+  url: "https://script.google.com/macros/s/AKfycbzePqzYVaFhXPScnN6u7wrFGrQdG9eoEj_GPG0Ao_iFLZjiZ0ZBx488osnCUZtJaQ7t/exec",
+  lib: "Swami Vivekananda Library",
+  wa: "919336327644",          // owner WhatsApp (country code ke saath, + ke bina)
+  upi: "gulshan192singh-1@oksbi",         // UPI ID
+  seats: 80,
+  shifts: { "Morning": 500, "Evening": 500, "Full Day": 900 }   // shift: fee (Rs)
+};
+/* ======================================= */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let sel = null, sSeat = null, taken = [], pw = "", all = [];
 
-        if (method === 'UPI' || method === 'QR Code') {
-            let html = `
-                <div class="form-group" style="margin-bottom: 15px;">
-                    <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Payment Note / Transaction ID:</label>
-                    <input type="text" name="Receipt" id="receiptText" placeholder="Enter UPI Transaction ID" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
-                </div>
-            `;
-            if (method === 'UPI') {
-                html += `<div style="background: #f9f9f9; padding: 10px; border: 1px dashed #ccc; border-radius: 5px; margin-top: 10px; text-align: center; color: #333;"><strong>Owner UPI ID :</strong>gulshan192singh-1@oksbi / UPI NO : 8858916452  </div>`;
-            } else if (method === 'QR Code') {
-                html += `<div style="background: #f9f9f9; padding: 10px; border: 1px dashed #ccc; border-radius: 5px; margin-top: 10px; text-align: center; color: #333;"><strong>Scan QR Code to Pay:</strong><br><p style="font-size:12px; color:#666;">(Aapka QR code yahan dikhega)</p></div>`;
-                <img src="WhatsApp Image 2026-09-27 at 9.34.58 PM.jpg" alt="QR " class="w-80 h-80 object-cover rounded-xl shadow-lg">         
-            }
-            section.innerHTML = html;
-        }
+$("libname").textContent = CFG.lib;
+for (const s in CFG.shifts) $("shift").add(new Option(s + " - Rs " + CFG.shifts[s], s));
+const months = [...Array(12)].map((_, i) => {
+  const d = new Date(); d.setDate(1); d.setMonth(d.getMonth() + i);
+  return d.toLocaleString("en-US", { month: "long", year: "numeric" });
+});
+months.forEach(m => $("month").add(new Option(m, m)));
+$("upiId").textContent = CFG.upi;
+$("cp").onclick = () => { navigator.clipboard && navigator.clipboard.writeText(CFG.upi); $("cp").textContent = "Copied!"; setTimeout(() => $("cp").textContent = "Copy UPI ID", 1500); };
+
+const api = d => fetch(CFG.url, { method: "POST", body: JSON.stringify(d) }).then(r => r.json());
+
+function draw() {
+  $("grid").innerHTML = "";
+  for (let n = 1; n <= CFG.seats; n++) {
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = n;
+    const t = taken.includes(n);
+    b.className = "seat" + (t ? " t" : "") + (sel === n ? " sel" : "");
+    b.disabled = t;
+    b.onclick = () => { sel = n; $("seatTxt").textContent = "No. " + n; draw(); };
+    $("grid").appendChild(b);
+  }
+}
+async function loadSeats() {
+  sel = null; $("seatTxt").textContent = "";
+  try {
+    const u = CFG.url + "?shift=" + encodeURIComponent($("shift").value) + "&month=" + encodeURIComponent($("month").value);
+    taken = (await (await fetch(u)).json()).taken || [];
+  } catch (e) { taken = []; }
+  draw();
+}
+$("shift").onchange = $("month").onchange = loadSeats;
+$("pay").onchange = () => { const v = $("pay").value; $("pQR").classList.toggle("hide", v !== "QR Code"); $("pUPI").classList.toggle("hide", v !== "UPI"); $("pCash").classList.toggle("hide", v !== "Cash"); };
+$("pay").onchange();
+
+function say(el, txt, cls) { $(el).innerHTML = '<div class="msg ' + cls + '">' + esc(txt) + "</div>"; }
+
+$("go").onclick = async () => {
+  const d = { action: "book", name: $("name").value.trim(), phone: $("phone").value.trim(),
+    shift: $("shift").value, month: $("month").value, seat: sel, pay: $("pay").value };
+  if (!d.name) return say("sMsg", "Apna poora naam likho.", "e");
+  if (!/^\d{10}$/.test(d.phone)) return say("sMsg", "10 digit ka WhatsApp number likho.", "e");
+  if (!sel) return say("sMsg", "Pehle ek khali seat chuno.", "e");
+  $("go").disabled = true;
+  try {
+    const r = await api(d);
+    if (r.error) { say("sMsg", r.error, "e"); loadSeats(); }
+    else {
+      say("sMsg", "Seat " + sel + " The seat has been put on hold. Send the payment recipt on Whatsapp.", "s");
+      const t = `Hello, seat booking:\nName: ${d.name}\nSeat: ${d.seat}\nShift: ${d.shift}\nMonth: ${d.month}\nPayment: ${d.pay}`;
+      window.open("https://wa.me/" + CFG.wa + "?text=" + encodeURIComponent(t), "_blank");
+      loadSeats();
     }
+  } catch (e) { say("sMsg", "try again.....", "e"); }
+  $("go").disabled = false;
+};
 
-    document.getElementById('libraryBookingForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+/* ---- owner ---- */
+$("tb1").onclick = () => { $("stu").classList.remove("hide"); $("own").classList.add("hide"); $("tb1").classList.add("on"); $("tb2").classList.remove("on"); };
+$("tb2").onclick = () => { $("own").classList.remove("hide"); $("stu").classList.add("hide"); $("tb2").classList.add("on"); $("tb1").classList.remove("on"); };
 
-        const btn = document.getElementById('submitBtn');
-        btn.innerText = "Saving data to Google Sheet...";
-        btn.disabled = true;
+const MN = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const mi = m => { const p = m.split(" "); return +p[1] * 12 + MN.indexOf(p[0]); };
+const act = r => r.status === "Pending" || r.status === "Confirmed";
+const curM = months[0];
+[-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].forEach(i => { const d = new Date(); d.setDate(1); d.setMonth(d.getMonth() + i);
+  const m = d.toLocaleString("en-US", { month: "long", year: "numeric" }); $("fm").add(new Option(m, m, false, i === 0)); });
+$("fs").add(new Option("All shifts", "All"));
+for (const s in CFG.shifts) $("fs").add(new Option(s, s));
+$("fm").onchange = $("fs").onchange = () => ownerRender();
 
-        const name = document.getElementById('fullName').value;
-        const whatsapp = document.getElementById('whatsappNo').value;
-        const shift = document.getElementById('selectedShift').value;
-        const month = document.getElementById('feeMonth').value;
-        const method = document.getElementById('paymentMethod').value;
-        
-        let receiptVal = "Cash Payment";
-        const receiptInput = document.getElementById('receiptText');
-        if (receiptInput) {
-            receiptVal = receiptInput.value;
-        }
+async function fetchList() {
+  const r = await api({ action: "list", pw });
+  if (r.error) { pw = ""; $("oBody").classList.add("hide"); $("lg").classList.remove("hide"); return say("oMsg", r.error, "e"); }
+  all = r.rows; $("lg").classList.add("hide"); $("oBody").classList.remove("hide"); ownerRender();
+}
+$("login").onclick = () => { pw = $("pw").value.trim(); fetchList().catch(() => say("oMsg", "Server se connect nahi hua.", "e")); };
+$("logout").onclick = () => { pw = ""; all = []; $("pw").value = ""; $("oBody").classList.add("hide"); $("lg").classList.remove("hide"); $("tb2").textContent = "Owner"; };
+setInterval(() => { if (pw) fetchList().catch(() => {}); }, 20000);   // naye booking har 20 sec me aate hain
 
-        // 🟢 YAHAN APNA GOOGLE APPS SCRIPT KA WEB APP URL PASTE KAREIN 🟢
-        const scriptURL = "https://script.google.com/macros/s/AKfycbzokIzmjGKRP33CXqwPoTxD4psHtjxX4HS4Bbg3A8W25635mjCJZotRBXtPKBZ5BuJ4/exec";
+function ownerRender() {
+  const P = all.filter(r => r.status === "Pending").sort((a, b) => b.row - a.row);
+  $("pc").textContent = P.length; $("tb2").textContent = "Owner" + (P.length ? " (" + P.length + ")" : "");
+  $("pend").innerHTML = P.map(r => `<div class="note"><b>${esc(r.name)}</b> ne <b>Seat ${esc(r.seat)}</b> choose ki<br>
+    <small>${esc(r.shift)} | ${esc(r.month)} | ${esc(r.pay)} | <a href="https://wa.me/91${esc(r.phone)}" target="_blank" rel="noopener">${esc(r.phone)}</a></small>
+    <div class="ab"><button class="g" data-a="Confirmed" data-r="${r.row}">Confirm</button><button class="x" data-a="Rejected" data-r="${r.row}">Reject</button></div></div>`).join("")
+    || '<p class="sub">Koi nayi request nahi.</p>';
+  const m = $("fm").value, f = $("fs").value;
+  const B = all.filter(r => act(r) && r.month === m && (f === "All" || f === r.shift || f === "Full Day" || r.shift === "Full Day"));
+  $("ogrid").innerHTML = "";
+  for (let n = 1; n <= CFG.seats; n++) {
+    const x = B.filter(r => r.seat === n), b = document.createElement("button");
+    b.type = "button"; b.textContent = n;
+    b.className = "seat" + (x.length ? (x.some(r => r.status === "Confirmed") ? " t" : " p") : "") + (sSeat === n ? " sel" : "");
+    b.onclick = () => { sSeat = n; ownerRender(); };
+    $("ogrid").appendChild(b);
+  }
+  detail(m);
+}
 
-        const formData = new FormData(this);
+function detail(m) {
+  if (!sSeat) { $("det").innerHTML = '<p class="sub">Kisi seat par tap karo, uski detail yahin dikhegi.</p>'; return; }
+  const rs = all.filter(r => r.seat === sSeat && act(r) && r.month === m);
+  if (!rs.length) { $("det").innerHTML = `<div class="note" style="border-color:var(--ok)"><b>Seat ${sSeat}: Khali</b><br><small>${esc(m)} me koi booking nahi.</small></div>`; return; }
+  const yr = +m.split(" ")[1], cur = mi(curM);
+  $("det").innerHTML = [...new Set(rs.map(r => String(r.phone)))].map(ph => {
+    const mine = all.filter(r => r.seat === sSeat && String(r.phone) === ph && r.status !== "Rejected");
+    const last = rs.find(r => String(r.phone) === ph);
+    const first = Math.min(...mine.map(r => mi(r.month)));
+    const rel = mine.filter(r => r.status === "Released").map(r => mi(r.month));
+    const end = rel.length ? Math.min(cur, Math.min(...rel) - 1) : cur;
+    let due = 0;
+    const cells = MN.map(n => {
+      const mm = n + " " + yr, k = mi(mm), x = mine.filter(r => r.month === mm); let s = "-";
+      if (x.some(r => r.status === "Confirmed")) s = "Paid";
+      else if (x.some(r => r.status === "Pending")) s = "Pending";
+      else if (x.some(r => r.status === "Released")) s = "Chhoda";
+      else if (k >= first && k <= end) { s = "Baki"; due++; }
+      return `<div class="mo ${s}"><small>${n.slice(0, 3)}</small><b>${s}</b></div>`;
+    }).join("");
+    return `<div class="note" style="border-color:var(--bad)"><b>Seat ${sSeat}: ${esc(last.name)}</b><br>
+      <small>${esc(last.shift)} | ${esc(last.pay)} | <a href="https://wa.me/91${esc(ph)}" target="_blank" rel="noopener">${esc(ph)}</a></small>
+      <div class="months">${cells}</div>
+      <div>${due ? "Baki fee: " + due + " mahine = Rs " + due * (CFG.shifts[last.shift] || 0) : "Koi fee baki nahi"}</div>
+      <div class="ab"><button class="x" data-a="rel" data-p="${esc(ph)}">Seat khali karo</button></div></div>`;
+  }).join("");
+}
 
-        // Google Sheet me data bhejna
-        fetch(scriptURL, { method: 'POST', body: formData })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                openWhatsApp(name, whatsapp, shift, month, method, receiptVal);
-            })
-            .catch(error => {
-                console.error('Error!', error.message);
-                // Agar network error bhi ho toh bhi WhatsApp khul jaye taaki user ka kaam na ruke
-                openWhatsApp(name, whatsapp, shift, month, method, receiptVal);
-            });
-    });
+$("own").onclick = async e => {
+  const b = e.target.closest("button[data-a]"); if (!b) return;
+  b.disabled = true;
+  try {
+    if (b.dataset.a === "rel") {
+      if (!confirm("Seat " + sSeat + " khali karni hai? Is mahine se aage ki booking hat jayegi (purana record Sheet me rahega).")) { b.disabled = false; return; }
+      const rows = all.filter(r => r.seat === sSeat && String(r.phone) === b.dataset.p && act(r) && mi(r.month) >= mi(curM));
+      for (const r of rows) await api({ action: "status", pw, row: r.row, status: "Released" });
+    } else await api({ action: "status", pw, row: Number(b.dataset.r), status: b.dataset.a });
+    await fetchList();
+  } catch (err) { b.disabled = false; }
+};
 
-    function openWhatsApp(name, whatsapp, shift, month, method, receiptVal) {
-        const ownerWhatsApp = "918858916452"; // Aapka WhatsApp number
-        const whatsappMessage = `*New Library Booking!*\n\n` +
-            `👤 *Name:* ${name}\n` +
-            `📱 *WhatsApp:* ${whatsapp}\n` +
-            `⏰ *Shift:* ${shift}\n` +
-            `📅 *Month:* ${month}\n` +
-            `💳 *Payment:* ${method}\n` +
-            `📝 *Txn/Note:* ${receiptVal}\n\n` +
-            `"-----PLEASE SEND THE PAYMENT RECIEPT ALONG WITH IT-----".`;
+loadSeats();
+</script>
+</body>
 
-        const whatsappUrl = `https://wa.me/${ownerWhatsApp}?text=` + encodeURIComponent(whatsappMessage);
-        
-        alert("Booking successfully! Now opening WhatsApp...");
-        window.open(whatsappUrl, '_blank');
-        
-        // Form reset
-        document.getElementById('libraryBookingForm').reset();
-        document.getElementById('dynamic-payment-section').innerHTML = '';
-        document.getElementById('submitBtn').innerText = "Submit Booking & Open WhatsApp";
-        document.getElementById('submitBtn').disabled = false;
-    }
-     </script>
     <!-- STUDY TOOLS & ADVANCED PRODUCTIVITY -->
     <section id="study-tools" class="py-12 px-6 max-w-7xl mx-auto space-y-12">
         <div class="text-center">
