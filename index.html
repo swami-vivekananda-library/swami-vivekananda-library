@@ -59,7 +59,8 @@
                 <i id="theme-icon" class="fa-solid fa-sun"></i>
             <button type="button" class="obtn js-book">Book Seat &amp; Payment</button>
             </button>
-               </nav><style>
+               </nav>
+    <style>
 /* Overlay */
 .reg-overlay{
   position:fixed; inset:0; z-index:99999;
@@ -155,8 +156,6 @@ html.dark .reg-card select, html.dark-mode .reg-card select,
   background:#ff8a1f; color:#fff; font-size:26px; cursor:pointer;
 }
 </style>
-
-
     <!-- FLOATING QUICK CONTACT BUTTONS -->
     <div class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3">
         <a href="https://wa.me/918858916452?text=Hello,%20I%20want%20to%20know%20more%20about%20Swami%20Vivekananda%20Library" target="_blank" class="w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-2xl text-xl transition transform hover:scale-110" title="Chat on WhatsApp">
@@ -292,7 +291,7 @@ html.dark .reg-card select, html.dark-mode .reg-card select,
                 </div>
             </div>
         </div>
-         /* =====================================================================
+       /* =====================================================================*/
    PART A (sirf is alag page ke liye): header + page background
    Agar aap ye code apne index.html me daal rahe ho to PART A copy MAT karo.
    ===================================================================== */
@@ -504,11 +503,11 @@ html,body{margin:0;background:#0b1220;color:#e8edf7;font:16px/1.5 system-ui,-app
 
 /* ============ SETTINGS: sirf yahan badlo ============ */
 const CFG = {
-  url: "https://script.google.com/macros/s/AKfycbyTOd_wHsUg_8p-hhErRJPjzl0yitjRqIGmzLEs7jBeY-n1KP_IXWDRlXKYD09xBxiDYQ/exec",   // Deploy > Web app wala /exec link
+  url: "https://script.google.com/macros/s/AKfycbyvUdKrjGMUvaRKBOQZsqw83KKJ6JOv2wM6G4SmEsOqUDCz9-yZUUMapiUS6qZ7lyZ0/exec",   // Deploy > Web app wala /exec link
   lib: "Swami Vivekananda Library",
-  wa: "919336327644",                            // owner WhatsApp (country code ke saath, + ke bina)
+  wa: "918858916452",                            // owner WhatsApp (country code ke saath, + ke bina)
   upi: "gulshan192singh-1@oksbi",                // UPI ID
-  qr: "myqr.jpeg",                               // QR image ka file name (index.html ke saath wale folder me)
+  qr: "qr.jpg",                               // QR image ka file name (index.html ke saath wale folder me)
   seats: 80,                                     // Apps Script ke SEATS jitna hi rakho
   shifts: { "Morning": 500, "Evening": 500, "Full Day": 900 }   // Apps Script ke SHIFT_FEES jaisa hi
 };
@@ -926,7 +925,6 @@ $("own").addEventListener("click", async e => {
             </div>
         </div>
     </section>
-        
     <!-- FEEDBACK & RATING SECTION -->
     <section id="feedback-section" class="py-12 px-6 max-w-3xl mx-auto">
         <div class="bg-gray-900 border border-gray-800 p-8 rounded-2xl shadow-2xl space-y-6">
@@ -978,10 +976,11 @@ $("own").addEventListener("click", async e => {
             <div>
                 <p class="font-semibold text-orange-400">Swami Vivekananda Library</p>
                 <p>Nagar Panchayat Sukrauli, Thuthi Chauraha, Kushinagar, Uttar Pradesh- 274207, India</p>
-                <p>Email: <a href="mailto:svdigitallibrary6824 @gmail.com" class="text-orange-400 hover:underline">svdigitallibrary6824@gmail.com</a></p>
+                <p>Email: <a href="mailto:svdigitallibrary6824@gmail.com" class="text-orange-400 hover:underline">svdigitallibrary6824@gmail.com</a></p>
             </div>
             <div class="mt-4 md:mt-0 text-right">
                 <p class="text-xs text-gray-500 mt-1">Designed & Developed by :<span class="text-orange-400 font-semibold">Ashutosh Jaiswal</span></p>
+                 <p class="text-xs text-gray-500 mt-1">Need a stunning website? Call or WhatsApp me:<a href="tel:+919336327644" class="text-orange-400 front-semibold hover:underline">+919336327644</a></p>
             </div>
         </div>
 
@@ -989,7 +988,8 @@ $("own").addEventListener("click", async e => {
             <p>&copy; 2026 Swami Vivekananda Library. All rights reserved.</p>
         </div>
     </footer>
- <!-- SCRIPTS -->
+
+    <!-- SCRIPTS -->
     <script>
         function toggleTheme() {
             const body = document.getElementById('body');
@@ -1025,6 +1025,8 @@ $("own").addEventListener("click", async e => {
             content.classList.toggle('hidden');
             icon.classList.toggle('rotate-180');
         }
+
+        
         function setRating(rating) {
             totalScore += rating;
             reviewCount++;
@@ -1051,10 +1053,11 @@ $("own").addEventListener("click", async e => {
             let currentAvg = document.getElementById('avg-rating-text').innerText;
 
             let text = `*New Feedback Received*%0A*Name:* ${name}%0A*Rating:* ${currentAvg}/5 Stars%0A*Feedback:* ${msg}`;
+            /* OWNER WHATSAPP NUMBER: 918858916452 */
             let whatsappUrl = `https://wa.me/918858916452?text=${text}`;
             window.open(whatsappUrl, '_blank');
         }
-           function doPost(e) {
+        function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
